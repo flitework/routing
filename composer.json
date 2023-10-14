@@ -1,0 +1,21 @@
+{
+    "name": "flitework/routing",
+    "type": "library",
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "Flitework\\Routing\\": ""
+        },
+        "exclude-from-classmap": "Tests"
+    },
+    "authors": [
+        {
+            "name": "Ivan Mezinov",
+            "email": "ivanmezinov@mail.ru"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {
+        "php": "^8.0"
+    }
+}
