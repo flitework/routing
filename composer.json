@@ -6,7 +6,7 @@
         "psr-4": {
             "Flitework\\Routing\\": ""
         },
-        "exclude-from-classmap": "Tests"
+        "exclude-for-classmap": "Tests"
     },
     "authors": [
         {
@@ -17,5 +17,11 @@
     "minimum-stability": "dev",
     "require": {
         "php": "^8.0"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^9.6"
+    },
+    "scripts": {
+        "test": "phpunit tests"
     }
 }
