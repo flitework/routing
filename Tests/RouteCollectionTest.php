@@ -88,6 +88,15 @@ class RouteCollectionTest extends TestCase
         $this->assertEquals(0, self::$collection->count());
     }
     
+    /**
+     * @depends testAdd
+     */
+    public function testAll()
+    {
+        $this->assertIsArray(self::$collection->all());
+        $this->assertEquals(3, \count(self::$collection->all()));
+    }
+    
     public function routeProvider(): array
     {
         return RouteProvider::get();

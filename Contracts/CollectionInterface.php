@@ -14,4 +14,5 @@ interface CollectionInterface
     public function remove(string $name);
     public function count();
     public function clear();
+    public function all();
 }
