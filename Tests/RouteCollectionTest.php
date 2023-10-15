@@ -24,7 +24,7 @@ class RouteCollectionTest extends TestCase
     {
         $route = self::$collection->get("name2");
         
-        $this->assertEquals(Route::class, $route);
+        $this->assertEquals(Route::class, get_class($route));
     }
     
     /**
@@ -32,8 +32,8 @@ class RouteCollectionTest extends TestCase
      */
     public function testGetRouteNotFound()
     {
+        $this->expectException(RouteNotFoundException::class);
         self::$collection->get("name1");
-        $this->expectExceptionObject(RouteNotFoundException::class);
     }
     
     /**
@@ -51,7 +51,7 @@ class RouteCollectionTest extends TestCase
      */
     public function testHasFalse()
     {
-        $this->assertTrue(self::$collection->has('name1'));
+        $this->assertFalse(self::$collection->has('name1'));
     }
     
     /**
@@ -83,14 +83,8 @@ class RouteCollectionTest extends TestCase
      */
     public function testClear()
     {
-        $this->assertEquals(2, self::$collection->clear());
-    }
-    
-    /**
-     * @depends setUpBeforeClass
-     */
-    public function testCountNewCollection()
-    {
+        self::$collection->clear();
+        
         $this->assertEquals(0, self::$collection->count());
     }
     
