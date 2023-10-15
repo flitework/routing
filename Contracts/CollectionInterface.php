@@ -12,6 +12,6 @@ interface CollectionInterface
     public function has(string $name);
     public function add(string $name);
     public function remove(string $name);
-    public function count(string $name);
-    public function clear(string $name);
+    public function count();
+    public function clear();
 }
