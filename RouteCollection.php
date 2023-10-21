@@ -18,7 +18,7 @@ class RouteCollection implements CollectionInterface
     /**
      * @var array<name: string, Route>
      */
-    private array $routes;
+    private array $routes = [];
     
     public function add(string $name, Route $route = null): static
     {

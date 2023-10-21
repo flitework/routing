@@ -35,10 +35,6 @@ class PhpClassLoader implements LoaderInterface
             $this->setRoute($method);
         }
         
-        if (0 === count($this->routes)) {
-            return [];
-        }
-        
         return $this->routes;
     }
 
