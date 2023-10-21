@@ -20,10 +20,10 @@ class PhpClassLoader implements LoaderInterface
      */
     private array $routes = [];
     
-    public function load(string $resource): ?array
+    public function load(string $resource): array
     {
         if (!class_exists($resource)) {
-            return null;
+            return [];
         }
         $reflection = new \ReflectionClass($resource);
         
@@ -36,7 +36,7 @@ class PhpClassLoader implements LoaderInterface
         }
         
         if (0 === count($this->routes)) {
-            return null;
+            return [];
         }
         
         return $this->routes;

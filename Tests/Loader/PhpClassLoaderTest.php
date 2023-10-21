@@ -24,12 +24,14 @@ class PhpClassLoaderTest extends TestCase
     
     public function testLoadClassNotExist()
     {
-        $this->assertNull($this->loader->load('CustomClass'));
+        $this->assertIsArray($this->loader->load('CustomClass'));
+        $this->assertEquals(0, \count($this->loader->load('CustomClass')));
     }
     
-    public function testLoadReturnNull()
+    public function testLoadNoRoutes()
     {
-        $this->assertNull($this->loader->load(NoRoutesFixture::class));
+        $this->assertIsArray($this->loader->load(NoRoutesFixture::class));
+        $this->assertEquals(0, \count($this->loader->load(NoRoutesFixture::class)));
     }
     
     public function testLoadReturnRoutes()
