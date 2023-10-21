@@ -29,9 +29,11 @@ class RouteCollection implements CollectionInterface
         return $this;
     }
 
-    public function clear(): void
+    public function clear(): static
     {
         $this->routes = [];
+        
+        return $this;
     }
 
     public function count(): int
@@ -53,9 +55,11 @@ class RouteCollection implements CollectionInterface
         return array_key_exists($name, $this->routes);
     }
 
-    public function remove(string $name): void
+    public function remove(string $name): static
     {
         unset($this->routes[$name]);
+        
+        return $this;
     }
 
     public function all(): array
