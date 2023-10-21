@@ -12,7 +12,7 @@ use Flitework\Routing\Route;
  *
  * @author Ivan Mezinov <ivanmezinov@mail.ru>
  */
-class AttributeClassLoader implements LoaderInterface
+class PhpClassLoader implements LoaderInterface
 {
     /**
      * 
@@ -42,9 +42,25 @@ class AttributeClassLoader implements LoaderInterface
         return $this->routes;
     }
 
-    public function supportType(): string
+    public function support(string $resource, string|array $type): bool
     {
-        return 'attribute';
+        if (!class_exists($resource)) {
+            return false;
+        }
+        if (is_string($type)) {
+            return 'attribute' === $type || 'phpdoc' === $type;
+        }
+        if (is_array($type)) {
+            $support = false;
+            foreach ($type as $oneType) {
+                $support = $this->support($resource, $oneType);
+                if ($support === true) {
+                    break;
+                }
+            }
+        }
+        
+        return $support;
     }
     
     private function isRoute(\ReflectionMethod $method): bool

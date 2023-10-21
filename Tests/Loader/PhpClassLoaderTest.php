@@ -3,7 +3,7 @@
 namespace Flitework\Routing\Tests\Loader;
 
 use PHPUnit\Framework\TestCase;
-use Flitework\Routing\Loader\AttributeClassLoader;
+use Flitework\Routing\Loader\PhpClassLoader;
 use Flitework\Routing\Route;
 use Flitework\Routing\Tests\Fixtures\AttributeFixtures\FullFixture;
 use Flitework\Routing\Tests\Fixtures\AttributeFixtures\NoRoutesFixture;
@@ -13,13 +13,13 @@ use Flitework\Routing\Tests\Fixtures\AttributeFixtures\MissingParameterPathForRo
 /**
  * @author Ivan Mezinov <ivanmezinov@mail.ru>
  */
-class AttributeClassLoaderTest extends TestCase
+class PhpClassLoaderTest extends TestCase
 {
     private $loader;
     
     protected function setUp(): void
     {
-        $this->loader = new AttributeClassLoader();
+        $this->loader = new PhpClassLoader();
     }
     
     public function testLoadClassNotExist()
@@ -52,8 +52,43 @@ class AttributeClassLoaderTest extends TestCase
         $this->loader->load(MissingParameterPathForRouteFixture::class);
     }
     
-    public function testSupportType()
+    /**
+     * @dataProvider supportTrueProvider
+     */
+    public function testSupportTrue($class, $type)
     {
-        $this->assertEquals('attribute', $this->loader->supportType());
+        $this->assertTrue($this->loader->support($class, $type));
+    }
+    
+    /**
+     * @dataProvider supportFalseProvider
+     */
+    public function testSupportFalse($class, $type)
+    {
+        $this->assertFalse($this->loader->support($class, $type));
+    }
+    
+    public function supportTrueProvider(): array
+    {
+        $class = FullFixture::class;
+        return [
+            [$class, 'attribute'],
+            [$class, 'phpdoc'],
+            [$class, ['attribute']],
+            [$class, ['phpdoc']],
+            [$class, ['attribute', 'phpdoc', 'foo']],
+            [$class, ['foo', 'bar', 'baz', 'attribute']]
+        ];
+    }
+    
+    public function supportFalseProvider(): array
+    {
+        $class = FullFixture::class;
+        return [
+            ['CustomClass', 'attribute'],
+            ['CustomClass', 'phpdoc'],
+            [$class, ['foo', 'bar', 'baz']],
+            [$class, 'foo']
+        ];
     }
 }
