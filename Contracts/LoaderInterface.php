@@ -9,5 +9,5 @@ namespace Flitework\Routing\Contracts;
 interface LoaderInterface
 {
     public function load(string $resource);
-    public function supportType(): string;
+    public function support(string $resource, string $type);
 }
