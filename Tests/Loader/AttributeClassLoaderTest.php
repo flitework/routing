@@ -3,7 +3,7 @@
 namespace Flitework\Routing\Tests\Loader;
 
 use PHPUnit\Framework\TestCase;
-use Flitework\Routing\Loader\PhpClassLoader;
+use Flitework\Routing\Loader\AttributeClassLoader;
 use Flitework\Routing\Route;
 use Flitework\Routing\Tests\Fixtures\AttributeFixtures\FullFixture;
 use Flitework\Routing\Tests\Fixtures\AttributeFixtures\NoRoutesFixture;
@@ -13,13 +13,13 @@ use Flitework\Routing\Tests\Fixtures\AttributeFixtures\MissingParameterPathForRo
 /**
  * @author Ivan Mezinov <ivanmezinov@mail.ru>
  */
-class PhpClassLoaderTest extends TestCase
+class AttributeClassLoaderTest extends TestCase
 {
     private $loader;
     
     protected function setUp(): void
     {
-        $this->loader = new PhpClassLoader();
+        $this->loader = new AttributeClassLoader();
     }
     
     public function testLoadClassNotExist()
@@ -75,10 +75,8 @@ class PhpClassLoaderTest extends TestCase
         $class = FullFixture::class;
         return [
             [$class, 'attribute'],
-            [$class, 'phpdoc'],
             [$class, ['attribute']],
-            [$class, ['phpdoc']],
-            [$class, ['attribute', 'phpdoc', 'foo']],
+            [$class, ['attribute', 'foo', 'bar']],
             [$class, ['foo', 'bar', 'baz', 'attribute']]
         ];
     }
@@ -88,7 +86,7 @@ class PhpClassLoaderTest extends TestCase
         $class = FullFixture::class;
         return [
             ['CustomClass', 'attribute'],
-            ['CustomClass', 'phpdoc'],
+            ['CustomClass', 'foo'],
             [$class, ['foo', 'bar', 'baz']],
             [$class, 'foo']
         ];

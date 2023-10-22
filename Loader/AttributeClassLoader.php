@@ -12,7 +12,7 @@ use Flitework\Routing\Route;
  *
  * @author Ivan Mezinov <ivanmezinov@mail.ru>
  */
-class PhpClassLoader implements LoaderInterface
+class AttributeClassLoader implements LoaderInterface
 {
     /**
      * 
@@ -44,7 +44,7 @@ class PhpClassLoader implements LoaderInterface
             return false;
         }
         if (is_string($type)) {
-            return 'attribute' === $type || 'phpdoc' === $type;
+            return 'attribute' === $type;
         }
         if (is_array($type)) {
             $support = false;
