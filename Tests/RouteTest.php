@@ -4,7 +4,7 @@ namespace Flitework\Routing\Tests;
 
 use PHPUnit\Framework\TestCase;
 use Flitework\Routing\Route;
-use Flitework\Routing\Tests\DataProvider\RouteProvider;
+use Flitework\Routing\Tests\DataProvider\RouteDataProvider;
 
 class RouteTest extends TestCase
 {
@@ -40,6 +40,6 @@ class RouteTest extends TestCase
     
     public function dataProvider(): array
     {
-        return RouteProvider::get();
+        return RouteDataProvider::get();
     }
 }

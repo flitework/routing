@@ -2,7 +2,7 @@
 
 namespace Flitework\Routing\Tests\DataProvider;
 
-class RouteProvider
+class RouteDataProvider
 {
     public static function get()
     {

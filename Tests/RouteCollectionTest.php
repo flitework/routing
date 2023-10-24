@@ -6,7 +6,7 @@ use PHPUnit\Framework\TestCase;
 use Flitework\Routing\RouteCollection;
 use Flitework\Routing\Route;
 use Flitework\Routing\Exception\RouteNotFoundException;
-use Flitework\Routing\Tests\DataProvider\RouteProvider;
+use Flitework\Routing\Tests\DataProvider\RouteDataProvider;
 
 class RouteCollectionTest extends TestCase
 {
@@ -95,6 +95,6 @@ class RouteCollectionTest extends TestCase
     
     public function routeProvider(): array
     {
-        return RouteProvider::get();
+        return RouteDataProvider::get();
     }
 }
