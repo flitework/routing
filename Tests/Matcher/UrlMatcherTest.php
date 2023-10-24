@@ -6,6 +6,7 @@ use PHPUnit\Framework\TestCase;
 use Flitework\Routing\Matcher\UrlMatcher;
 use Flitework\Routing\RouteCollection;
 use Flitework\Routing\Route;
+use Flitework\Routing\Tests\DataProvider\RouteProvider;
 
 class UrlMatcherTest extends TestCase
 {
@@ -39,10 +40,6 @@ class UrlMatcherTest extends TestCase
     
     public function providerRoute(): array
     {
-        return [
-            ['route', new Route('/foo'), '/foo'],
-            ['route', new Route('/foo/{bar}/baz'), '/foo/string/baz/'],
-            ['route', new Route('/{id}/foo/bar/'), '/string/foo/bar'],
-        ];
+        return RouteProvider::get();
     }
 }
